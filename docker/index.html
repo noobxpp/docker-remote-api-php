@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-<!--系统内置 start-->
-<!--系统内置 end-->
         <meta charset="utf-8">
         <title>靶机开启</title>
         <link rel="stylesheet" href="./index.css">
@@ -19,7 +17,12 @@
                         <option value="uploadlabs">upload-labs</option>
                 </select>
             </div>
-            <button >提交</button>
+            <div class="check">
+                <span class="tip">验证码：</span>
+                <input type="text"  class="text" id="code_input" placeholder="请输入验证码" autocomplete="off">
+                 <div id="v_container" style="width:100px;height: 35px;" ></div>
+            </div>
+            <button id="my_button">提交</button>
             <li class="warning">由于靶机生成需要时间,建议刷新之后使用</li>
         </form>
         <ul class="bg-bubbles">  
@@ -35,5 +38,17 @@
             <li></li>  
         </ul>  
     </div>  
+    <script src="./index.js">     </script>
+    <script>
+       var verifyCode = new GVerify("v_container");
+    document.getElementById("my_button").onclick = function(){
+        var res = verifyCode.validate(document.getElementById("code_input").value);
+        if(res){
+            alert("验证正确");
+        }else{
+            alert("验证码错误");   
+        }
+    }
+    </script>       
     </body>
 </html>
